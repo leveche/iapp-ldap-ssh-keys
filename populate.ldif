@@ -1,0 +1,59 @@
+dn: uid=good,dc=sah
+cn: good
+uid: good
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: ldapPublicKey
+loginShell: /bin/bash
+uidNumber: 15075
+gidNumber: 15075
+description: actvice account allowed to log in; auth by ssh key, explicitly in allowed group
+homeDirectory: /tmp
+sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC/wknbO0QSElUxSIaPo1l7Je3BukTMEr/qG1P4BjnLOPl7QLdHbuCp/buiXPUxMIE/WM3iVw7tI4jMM7iup2V7QpZipLXj9XALfjmi6uwvkWadDb/QxxWE0CHnWamHQPsOSf2wa9g5Z1E/9ngH/m7w3xEp0zQJ7RxtmmeVHmya/w== good@localhost
+
+dn: uid=bad,dc=sah
+cn: bad
+uid: bad
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: ldapPublicKey
+loginShell: /bin/bash
+uidNumber: 15075
+gidNumber: 15075
+description: inactive account; explicitly disallowed in a group
+homeDirectory: /tmp
+sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCtPYwEvGtjlWNe3oALOWfX5QL8SOGVdvi9EyKuunJW9EDrlwaC7LgooY957+/TDPbLgo6N/IvCgQ2uGGceRuvobcvPtng7hUeWNHPrVcCIsOz/ZMDRvJ7MQluWcQqcC0MEDjeBHchsxUYcWGQAwHIvnE8vWVptgB2RqB8bA4Pypw== bad@localhost
+
+dn: uid=ugly,dc=sah
+cn: ugly
+uid: ugly
+objectClass: account
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: ldapPublicKey
+loginShell: /bin/bash
+uidNumber: 15075
+gidNumber: 15075
+description: active account with a compromized key; key added to KRL
+homeDirectory: /tmp
+sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDPPntwqyIfC09PjgAMxmcUOCkTFCVAcWeJbSlR1B/7PxlGAo15vxk+lqSTlUJFFPbLC3osOa6BNUTDBhUPDR075W3CnsvGQh59950SYc1asnP7bwJhYhXpjytYmUy1nx2fbSfnp90LIFnhR+s+UovTddMv4X/ZeZMVVGksFxBQhw== ugly@localhost
+sshPublicKey: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQDQ2PDMeiq8EeuxMge5LqTTLtw/g2LGbv35eidFmjoEaIwyWXi/yeDXYqRo2sAcj+s1NQEn/lrS6NCGkMZ/VmYYMh3C7XxfnlHeUgFZgpxTDA8UozzF78efugXLwYI3mRfF+APgVijKsxaHi1yJKa/iXLs0qsvDLoVyCPB5JTAfyw== ugly-leaked@localhost
+
+dn: cn=allowed-ssh,dc=sah
+objectClass: posixGroup
+cn: allowed-ssh
+gidNumber: 10000
+memberUid: good
+memberUid: bad
+memberUid: ugly
+memberUid: vagrant
+
+dn: cn=no-ssh,dc=sah
+objectClass: posixGroup
+cn: allowed-ssh
+gidNumber: 10001
+memberUid: bad
+
+
