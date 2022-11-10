@@ -1,0 +1,4 @@
+dn: dc=sah
+objectClass: dcObject
+objectClass: domain
+dc: SAH
